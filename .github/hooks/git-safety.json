@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "platform": "darwin",
+        "command": "bash .github/hooks/scripts/git-safety.sh",
+        "timeout": 5
+      },
+      {
+        "type": "command",
+        "platform": "linux",
+        "command": "bash .github/hooks/scripts/git-safety.sh",
+        "timeout": 5
+      }
+    ]
+  }
+}

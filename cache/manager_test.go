@@ -376,7 +376,7 @@ func TestDo_Deduplication(t *testing.T) {
 		m := NewManager[string, string]()
 
 		var fetchCount atomic.Int32
-		fetch := func(_ context.Context) (FetchResult[string], error) {
+		fetch := func(_ context.Context) (FetchResult[string], error) { //nolint:unparam // error is intentionally always nil in this test
 			fetchCount.Add(1)
 			time.Sleep(50 * time.Millisecond)
 			return FetchResult[string]{Value: "deduped", Policy: CacheWithTTL, TTL: time.Minute}, nil

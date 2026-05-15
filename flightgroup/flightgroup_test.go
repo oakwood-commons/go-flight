@@ -286,3 +286,24 @@ func TestForget(t *testing.T) {
 		})
 	})
 }
+
+func TestPanicErr_Unwrap(t *testing.T) {
+	t.Parallel()
+
+	t.Run("unwraps_error_value", func(t *testing.T) {
+		t.Parallel()
+		inner := fmt.Errorf("wrapped error")
+		pe := newPanicErr(inner)
+		var unwrapped interface{ Unwrap() error }
+		assert.ErrorAs(t, pe, &unwrapped)
+		assert.Equal(t, inner, unwrapped.Unwrap())
+	})
+
+	t.Run("returns_nil_for_non_error_value", func(t *testing.T) {
+		t.Parallel()
+		pe := newPanicErr("not an error")
+		var panicErr PanicErr
+		assert.ErrorAs(t, pe, &panicErr)
+		assert.Nil(t, panicErr.Unwrap())
+	})
+}
