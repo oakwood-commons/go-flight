@@ -8,20 +8,25 @@ import (
 	"github.com/oakwood-commons/go-flight/flightgroup"
 )
 
-// CachePolicy controls how a fetch result is cached.
-type CachePolicy int
+// Policy controls how a fetch result is cached.
+type Policy int
 
 const (
-	DoNotCache        CachePolicy = iota // fetch succeeded, do not cache
-	CacheWithTTL                         // cache with FetchResult.TTL
-	CacheIndefinitely                    // cache with no expiry
+	DoNotCache        Policy = iota // fetch succeeded, do not cache
+	CacheWithTTL                    // cache with FetchResult.TTL
+	CacheIndefinitely               // cache with no expiry
 )
+
+// CachePolicy is a backward-compatible alias for Policy.
+//
+// Deprecated: Use [Policy] instead.
+type CachePolicy = Policy //nolint:revive // stuttering is intentional for backward compatibility
 
 // FetchResult is returned by a FetchFunc to the Manager.
 type FetchResult[V any] struct {
 	Value  V
 	TTL    time.Duration // meaningful only when Policy == CacheWithTTL
-	Policy CachePolicy
+	Policy Policy
 }
 
 // FetchFunc is called when no cache layer has the value.

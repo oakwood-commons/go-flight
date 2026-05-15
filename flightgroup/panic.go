@@ -26,7 +26,7 @@ func (e PanicErr) Unwrap() error {
 
 func newPanicErr(v any) error {
 	stack := debug.Stack()
-	if line := bytes.IndexByte(stack[:], '\n'); line >= 0 {
+	if line := bytes.IndexByte(stack, '\n'); line >= 0 {
 		stack = stack[line+1:]
 	}
 	return PanicErr{v: v, stack: stack}
