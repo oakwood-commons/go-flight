@@ -16,7 +16,7 @@ A generic singleflight library for Go with a leader/follower execution model and
 ## Install
 
 ```bash
-go get github.com/olisajc/go-flight
+go get github.com/oakwood-commons/go-flight
 ```
 
 Requires Go 1.21+ (generics + `context.WithoutCancel`).

@@ -1,6 +1,6 @@
-module github.com/olisajc/go-flight
+module github.com/oakwood-commons/go-flight
 
-go 1.26.2
+go 1.26.3
 
 require github.com/stretchr/testify v1.11.1
 

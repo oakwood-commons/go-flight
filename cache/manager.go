@@ -5,7 +5,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/olisajc/go-flight/flightgroup"
+	"github.com/oakwood-commons/go-flight/flightgroup"
 )
 
 // CachePolicy controls how a fetch result is cached.
